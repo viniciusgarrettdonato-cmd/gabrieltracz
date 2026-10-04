@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gabriel Tracz | Atleta</title>
+    <meta name="description" content="Site oficial do atleta Gabriel Tracz. Trajetória, resultados, patrocinadores e próximos desafios.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #080808;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --red: #e50914;
+            --red-dark: #a90009;
+            --black: #080808;
+            --dark: #101010;
+            --gray: #1b1b1b;
+            --light-gray: #a8a8a8;
+        }
+
+        /* SCROLLBAR */
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #080808;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--red);
+            border-radius: 20px;
+        }
+
+        /* HEADER */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 22px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: .3s;
+        }
+
+        header.scrolled {
+            background: rgba(8,8,8,.95);
+            backdrop-filter: blur(15px);
+            padding: 15px 6%;
+            box-shadow: 0 5px 30px rgba(0,0,0,.5);
+        }
+
+        .logo {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 30px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: var(--red);
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: var(--red);
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 120px 7% 80px;
+            overflow: hidden;
+
+            background:
+                linear-gradient(90deg, rgba(0,0,0,.98) 0%, rgba(0,0,0,.82) 42%, rgba(0,0,0,.25) 100%),
+                radial-gradient(circle at 80% 40%, rgba(229,9,20,.20), transparent 40%);
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: var(--red);
+            filter: blur(180px);
+            opacity: .12;
+            right: -200px;
+            top: 100px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 750px;
+        }
+
+        .tag {
+            display: inline-block;
+            border-left: 4px solid var(--red);
+            padding-left: 12px;
+            color: #ddd;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(80px, 12vw, 170px);
+            line-height: .78;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: -4px;
+        }
+
+        .hero h1 span {
+            color: var(--red);
+        }
+
+        .hero-subtitle {
+            margin-top: 30px;
+            max-width: 570px;
+            color: #bdbdbd;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 15px 28px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: .3s;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--red);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: white;
+            color: #000;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            border-color: #555;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        /* NUMBERS */
+
+        .numbers {
+            position: absolute;
+            bottom: 45px;
+            right: 7%;
+            display: flex;
+            gap: 55px;
+            z-index: 3;
+        }
+
+        .number-item strong {
+            display: block;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 42px;
+            color: white;
+        }
+
+        .number-item span {
+            font-size: 10px;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* SECTION */
+
+        section {
+            padding: 110px 7%;
+        }
+
+        .section-header {
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            color: var(--red);
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(45px, 6vw, 80px);
+            text-transform: uppercase;
+            line-height: .9;
+            font-weight: 900;
+        }
+
+        .section-title span {
+            color: var(--red);
+        }
+
+        /* SOBRE */
+
+        .about {
+            background: #0e0e0e;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            min-height: 600px;
+            background:
+                linear-gradient(145deg, #222, #080808);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-image::before {
+            content: "GT";
+            position: absolute;
+            font-family: 'Barlow Condensed';
+            font-weight: 900;
+            font-size: 260px;
+            color: rgba(255,255,255,.025);
+            right: -30px;
+            bottom: -50px;
+        }
+
+        .image-placeholder {
+            position: absolute;
+            inset: 30px;
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-family: 'Barlow Condensed';
+            font-size: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .about-text p {
+            color: #aaa;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .about-list {
+            margin-top: 35px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .about-list div {
+            border-left: 2px solid var(--red);
+            padding: 12px 15px;
+            background: #151515;
+        }
+
+        .about-list strong {
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .about-list span {
+            color: #888;
+            font-size: 13px;
+        }
+
+        /* RESULTS */
+
+        .results {
+            background: #080808;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .result-card {
+            padding: 35px 25px;
+            background: #111;
+            border: 1px solid #202020;
+            position: relative;
+            overflow: hidden;
+            transition: .4s;
+        }
+
+        .result-card::before {
+            content: "";
+            position: absolute;
+            height: 3px;
+            width: 0;
+            background: var(--red);
+            left: 0;
+            top: 0;
+            transition: .4s;
+        }
+
+        .result-card:hover {
+            transform: translateY(-8px);
+            border-color: #333;
+        }
+
+        .result-card:hover::before {
+            width: 100%;
+        }
+
+        .result-year {
+            color: var(--red);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .result-position {
+            font-family: 'Barlow Condensed';
+            font-size: 65px;
+            font-weight: 900;
+            margin: 15px 0 5px;
+        }
+
+        .result-name {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .result-info {
+            color: #777;
+            font-size: 11px;
+            margin-top: 8px;
+        }
+
+        /* TIMELINE */
+
+        .timeline {
+            background: #0e0e0e;
+        }
+
+        .timeline-container {
+            max-width: 950px;
+            margin: auto;
+            position: relative;
+        }
+
+        .timeline-container::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: #333;
+        }
+
+        .timeline-item {
+            width: 50%;
+            padding: 0 45px 55px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 50%;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 0;
+            width: 12px;
+            height: 12px;
+            background: var(--red);
+            border-radius: 50%;
+            box-shadow: 0 0 0 6px rgba(229,9,20,.12);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -6px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -6px;
+        }
+
+        .timeline-year {
+            font-family: 'Barlow Condensed';
+            color: var(--red);
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .timeline-item h3 {
+            margin: 7px 0;
+            font-size: 22px;
+        }
+
+        .timeline-item p {
+            color: #777;
+            line-height: 1.7;
+            font-size: 13px;
+        }
+
+        /* SPONSORS */
+
+        .sponsors {
+            text-align: center;
+            background: #080808;
+        }
+
+        .sponsors-intro {
+            max-width: 650px;
+            margin: 0 auto 60px;
+            color: #777;
+            line-height: 1.8;
+        }
+
+        .sponsors-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .sponsor {
+            height: 130px;
+            background: #111;
+            border: 1px solid #202020;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Barlow Condensed';
+            font-size: 24px;
+            font-weight: 800;
+            color: #555;
+            transition: .3s;
+        }
+
+        .sponsor:hover {
+            color: white;
+            border-color: var(--red);
+        }
+
+        .sponsor-main {
+            border-color: var(--red);
+            color: white;
+        }
+
+        /* PARTNERSHIP */
+
+        .partnership {
+            background:
+                linear-gradient(120deg, #110000, #080808);
+            text-align: center;
+        }
+
+        .partnership-box {
+            max-width: 900px;
+            margin: auto;
+            border: 1px solid #332020;
+            padding: 70px 40px;
+        }
+
+        .partnership-box h2 {
+            font-family: 'Barlow Condensed';
+            text-transform: uppercase;
+            font-size: 60px;
+            line-height: .95;
+            margin-bottom: 20px;
+        }
+
+        .partnership-box h2 span {
+            color: var(--red);
+        }
+
+        .partnership-box p {
+            max-width: 600px;
+            margin: auto;
+            color: #888;
+            line-height: 1.8;
+        }
+
+        /* GALLERY */
+
+        .gallery {
+            background: #0e0e0e;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .gallery-item {
+            height: 300px;
+            background: #171717;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item.large {
+            grid-row: span 2;
+            height: 612px;
+        }
+
+        .gallery-item::before {
+            content: "FOTO";
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #444;
+            font-family: 'Barlow Condensed';
+            font-size: 30px;
+            font-weight: 900;
+        }
+
+        /* SOCIAL */
+
+        .social {
+            background: var(--red);
+            text-align: center;
+            padding: 80px 7%;
+        }
+
+        .social h2 {
+            font-family: 'Barlow Condensed';
+            font-size: 70px;
+            text-transform: uppercase;
+            line-height: .9;
+        }
+
+        .social p {
+            margin: 20px auto 30px;
+            max-width: 500px;
+            font-size: 14px;
+            opacity: .8;
+        }
+
+        .social-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: white;
+            color: black;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            transition: .3s;
+        }
+
+        .social-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 50px 7%;
+            background: #050505;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .footer-logo {
+            font-family: 'Barlow Condensed';
+            font-size: 30px;
+            font-weight: 900;
+        }
+
+        .footer-logo span {
+            color: var(--red);
+        }
+
+        footer p {
+            color: #555;
+            font-size: 11px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            color: #777;
+            text-decoration: none;
+            font-size: 12px;
+            transition: .3s;
+        }
+
+        .footer-social a:hover {
+            color: white;
+        }
+
+        /* ANIMAÇÕES */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%,100% {
+                box-shadow: 0 0 0 0 rgba(229,9,20,.4);
+            }
+
+            50% {
+                box-shadow: 0 0 0 15px rgba(229,9,20,0);
+            }
+        }
+
+        /* RESPONSIVO */
+
+        @media(max-width: 900px) {
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 75px;
+                left: 0;
+                width: 100%;
+                background: #080808;
+                flex-direction: column;
+                padding: 30px;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .hero {
+                min-height: 90vh;
+            }
+
+            .numbers {
+                position: relative;
+                right: auto;
+                bottom: auto;
+                margin-top: 60px;
+                flex-wrap: wrap;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sponsors-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-item.large {
+                height: 300px;
+            }
+        }
+
+        @media(max-width: 600px) {
+
+            header {
+                padding: 18px 5%;
+            }
+
+            section {
+                padding: 80px 5%;
+            }
+
+            .hero {
+                padding: 130px 5% 60px;
+            }
+
+            .hero h1 {
+                font-size: 75px;
+            }
+
+            .hero-subtitle {
+                font-size: 14px;
+            }
+
+            .numbers {
+                gap: 25px;
+            }
+
+            .number-item strong {
+                font-size: 32px;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-list {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-container::before {
+                left: 5px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                width: 100%;
+                margin-left: 0;
+                padding-left: 35px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 0;
+            }
+
+            .sponsors-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .sponsor {
+                height: 100px;
+                font-size: 18px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-item,
+            .gallery-item.large {
+                height: 280px;
+            }
+
+            .partnership-box h2 {
+                font-size: 45px;
+            }
+
+            .social h2 {
+                font-size: 50px;
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header id="header">
+
+    <div class="logo">
+        GABRIEL<span>TRACZ</span>
+    </div>
+
+    <nav id="nav">
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Atleta</a>
+        <a href="#resultados">Resultados</a>
+        <a href="#trajetoria">Trajetória</a>
+        <a href="#patrocinadores">Patrocinadores</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#contato">Contato</a>
+    </nav>
+
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero" id="inicio">
+
+    <div class="hero-content">
+
+        <div class="tag">
+            Atleta de alto rendimento
+        </div>
+
+        <h1>
+            Gabriel<br>
+            <span>Tracz</span>
+        </h1>
+
+        <p class="hero-subtitle">
+            Disciplina, consistência e performance.
+            Uma trajetória construída através de treino,
+            competição e dedicação diária ao esporte.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#resultados" class="btn btn-primary">
+                Ver resultados
+            </a>
+
+            <a href="#patrocinadores" class="btn btn-outline">
+                Seja patrocinador
+            </a>
+        </div>
+
+    </div>
+
+    <div class="numbers">
+
+        <div class="number-item">
+            <strong>01</strong>
+            <span>Atleta</span>
+        </div>
+
+        <div class="number-item">
+            <strong>100%</strong>
+            <span>Dedicação</span>
+        </div>
+
+        <div class="number-item">
+            <strong>∞</strong>
+            <span>Objetivos</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SOBRE -->
+
+<section class="about" id="sobre">
+
+    <div class="section-header reveal">
+        <div class="section-label">Quem sou</div>
+
+        <h2 class="section-title">
+            Muito mais que<br>
+            <span>competição.</span>
+        </h2>
+    </div>
+
+    <div class="about-grid">
+
+        <div class="about-image reveal">
+            <div class="image-placeholder">
+                FOTO DO GABRIEL
+            </div>
+        </div>
+
+        <div class="about-text reveal">
+
+            <p>
+                Gabriel Tracz é atleta e apaixonado pelo esporte.
+                Sua trajetória é marcada pela busca constante por
+                evolução, superação e novos desafios.
+            </p>
+
+            <p>
+                Dentro e fora das competições, o objetivo é o mesmo:
+                trabalhar duro, representar aqueles que acreditam
+                no projeto e transformar cada desafio em experiência.
+            </p>
+
+            <p>
+                Este espaço reúne sua trajetória esportiva,
+                resultados, parceiros e oportunidades de marcas
+                que desejam crescer junto com o atleta.
+            </p>
+
+            <div class="about-list">
+
+                <div>
+                    <strong>Modalidade</strong>
+                    <span>Inserir modalidade</span>
+                </div>
+
+                <div>
+                    <strong>Categoria</strong>
+                    <span>Inserir categoria</span>
+                </div>
+
+                <div>
+                    <strong>Local</strong>
+                    <span>Paraná - Brasil</span>
+                </div>
+
+                <div>
+                    <strong>Objetivo</strong>
+                    <span>Alta performance</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- RESULTADOS -->
+
+<section class="results" id="resultados">
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            Performance
+        </div>
+
+        <h2 class="section-title">
+            Resultados<br>
+            <span>que falam.</span>
+        </h2>
+
+    </div>
+
+    <div class="results-grid">
+
+        <div class="result-card reveal">
+            <div class="result-year">2026</div>
+            <div class="result-position">01º</div>
+            <div class="result-name">Campeonato / Prova</div>
+            <div class="result-info">Categoria</div>
+        </div>
+
+        <div class="result-card reveal">
+            <div class="result-year">2026</div>
+            <div class="result-position">02º</div>
+            <div class="result-name">Campeonato / Prova</div>
+            <div class="result-info">Categoria</div>
+        </div>
+
+        <div class="result-card reveal">
+            <div class="result-year">2025</div>
+            <div class="result-position">01º</div>
+            <div class="result-name">Campeonato / Prova</div>
+            <div class="result-info">Categoria</div>
+        </div>
+
+        <div class="result-card reveal">
+            <div class="result-year">2025</div>
+            <div class="result-position">03º</div>
+            <div class="result-name">Campeonato / Prova</div>
+            <div class="result-info">Categoria</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TRAJETÓRIA -->
+
+<section class="timeline" id="trajetoria">
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            História
+        </div>
+
+        <h2 class="section-title">
+            Uma trajetória<br>
+            <span>em construção.</span>
+        </h2>
+
+    </div>
+
+    <div class="timeline-container">
+
+        <div class="timeline-item reveal">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-year">INÍCIO</div>
+
+            <h3>Primeiros passos</h3>
+
+            <p>
+                Início da trajetória esportiva e descoberta
+                da paixão pela competição.
+            </p>
+
+        </div>
+
+        <div class="timeline-item reveal">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-year">EVOLUÇÃO</div>
+
+            <h3>Mais treino. Mais performance.</h3>
+
+            <p>
+                A rotina de treinamentos começa a gerar resultados
+                cada vez mais expressivos.
+            </p>
+
+        </div>
+
+        <div class="timeline-item reveal">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-year">COMPETIÇÃO</div>
+
+            <h3>Primeiros grandes resultados</h3>
+
+            <p>
+                Conquistas importantes passam a fazer parte
+                da história do atleta.
+            </p>
+
+        </div>
+
+        <div class="timeline-item reveal">
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-year">AGORA</div>
+
+            <h3>Novos objetivos</h3>
+
+            <p>
+                Evoluir, competir e buscar novos níveis
+                de performance.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PATROCINADORES -->
+
+<section class="sponsors" id="patrocinadores">
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            Parceiros
+        </div>
+
+        <h2 class="section-title">
+            Quem acredita<br>
+            <span>no projeto.</span>
+        </h2>
+
+    </div>
+
+    <p class="sponsors-intro reveal">
+        O desenvolvimento de um atleta também é construído
+        através de parceiros que acreditam no esporte e
+        compartilham os mesmos valores.
+    </p>
+
+    <div class="sponsors-grid">
+
+        <div class="sponsor sponsor-main reveal">
+            PATROCINADOR
+        </div>
+
+        <div class="sponsor reveal">
+            MARCA 02
+        </div>
+
+        <div class="sponsor reveal">
+            MARCA 03
+        </div>
+
+        <div class="sponsor reveal">
+            MARCA 04
+        </div>
+
+        <div class="sponsor reveal">
+            MARCA 05
+        </div>
+
+        <div class="sponsor reveal">
+            MARCA 06
+        </div>
+
+        <div class="sponsor reveal">
+            MARCA 07
+        </div>
+
+        <div class="sponsor reveal">
+            MARCA 08
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PARCERIA -->
+
+<section class="partnership">
+
+    <div class="partnership-box reveal">
+
+        <div class="section-label">
+            Sua marca no esporte
+        </div>
+
+        <h2>
+            Vamos construir<br>
+            <span>o próximo resultado.</span>
+        </h2>
+
+        <p>
+            Empresas podem fazer parte da trajetória de Gabriel
+            Tracz através de patrocínio, fornecimento de produtos,
+            ativações, conteúdo digital e ações presenciais.
+        </p>
+
+        <br><br>
+
+        <a href="#contato" class="btn btn-primary">
+            Quero ser parceiro
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- GALERIA -->
+
+<section class="gallery" id="galeria">
+
+    <div class="section-header reveal">
+
+        <div class="section-label">
+            Dentro da competição
+        </div>
+
+        <h2 class="section-title">
+            Galeria<br>
+            <span>do atleta.</span>
+        </h2>
+
+    </div>
+
+    <div class="gallery-grid">
+
+        <div class="gallery-item large reveal">
+            <!-- COLOQUE SUA FOTO AQUI -->
+        </div>
+
+        <div class="gallery-item reveal">
+            <!-- COLOQUE SUA FOTO AQUI -->
+        </div>
+
+        <div class="gallery-item reveal">
+            <!-- COLOQUE SUA FOTO AQUI -->
+        </div>
+
+        <div class="gallery-item reveal">
+            <!-- COLOQUE SUA FOTO AQUI -->
+        </div>
+
+        <div class="gallery-item reveal">
+            <!-- COLOQUE SUA FOTO AQUI -->
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SOCIAL -->
+
+<section class="social" id="contato">
+
+    <h2 class="reveal">
+        Acompanhe<br>
+        <strong>Gabriel Tracz</strong>
+    </h2>
+
+    <p class="reveal">
+        Treinos, competições, bastidores, resultados
+        e a rotina de um atleta em busca de evolução.
+    </p>
+
+    <a
+        href="https://instagram.com/"
+        target="_blank"
+        class="social-button reveal">
+        Instagram
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-logo">
+        GABRIEL<span>TRACZ</span>
+    </div>
+
+    <p>
+        © 2026 Gabriel Tracz. Todos os direitos reservados.
+    </p>
+
+    <div class="footer-social">
+        <a href="#inicio">INÍCIO</a>
+        <a href="#resultados">RESULTADOS</a>
+        <a href="#patrocinadores">PATROCINADORES</a>
+    </div>
+
+</footer>
+
+
+<script>
+
+    /* MENU MOBILE */
+
+    function toggleMenu() {
+
+        const nav = document.getElementById("nav");
+
+        nav.classList.toggle("active");
+
+    }
+
+
+    /* HEADER */
+
+    window.addEventListener("scroll", function() {
+
+        const header = document.getElementById("header");
+
+        if (window.scrollY > 50) {
+
+            header.classList.add("scrolled");
+
+        } else {
+
+            header.classList.remove("scrolled");
+
+        }
+
+    });
+
+
+    /* ANIMAÇÃO AO ENTRAR NA TELA */
+
+    const reveals = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+
+        function(entries) {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("active");
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.12
+        }
+
+    );
+
+
+    reveals.forEach(element => {
+
+        observer.observe(element);
+
+    });
+
+
+    /* FECHAR MENU AO CLICAR */
+
+    document.querySelectorAll("nav a").forEach(link => {
+
+        link.addEventListener("click", function() {
+
+            document.getElementById("nav").classList.remove("active");
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
